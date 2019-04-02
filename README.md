@@ -49,3 +49,26 @@ Data Map:
 
 Line graph
 ![alt text](/doc/time.png "time")
+
+## Launch Codes
+1. Create and open your virtual environment
+
+```
+$ python3 -m venv venv
+$ . venv/bin/activate 
+```
+  
+2. Clone the Poppins repository
+
+``` 
+$ git clone https://github.com/mzhao3/Poppins.git 
+```
+
+3. Run the flask app
+```
+$ cd Poppins
+$ flask run 
+```
+  
+4. Open the flask app in your favorite browser!
+  Go to http://127.0.0.1:5000/
