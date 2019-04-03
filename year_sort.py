@@ -146,13 +146,15 @@ YearlyData = ['holder']
 #print(ALLYEARS)
 
 for dis in ALLDIS:
-    d = {}
+    L = []
     for year in ALLYEARS: #this is a LIST of every disctric
+        d = {}
         for singleDis in year:
             if singleDis['csd'] == str(dis):
                 d['year'] = singleDis['year']
                 d['money'] = singleDis['grand_total_csd']
-    YearlyData.append(d)
+        L.append(d)
+    YearlyData.append(L)
     #for every year (x), pull out district (y) and create a dictionary with key
 
 print(YearlyData[30])
