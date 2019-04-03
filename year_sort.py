@@ -59,7 +59,7 @@
 #
 #==============================================================
 import csv
-reader = csv.DictReader(open('./data/hsfix.csv', 'rb'))
+reader = csv.DictReader(open('./data/hsfix.csv', 'r'))
 dict_list = []
 for line in reader:
     dict_list.append(line)\
@@ -157,4 +157,5 @@ for dis in ALLDIS:
     YearlyData.append(L)
     #for every year (x), pull out district (y) and create a dictionary with key
 
-print(YearlyData[30])
+print("====testing===")
+print(YearlyData[1])

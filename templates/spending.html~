@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <div class="chart"></div>
+  </body>
+  <script src="http://d3js.org/d3.v5.min.js" charset="utf-8"></script>
+  <script type="text/javascript" src="spending.js"></script>
+
+</html>

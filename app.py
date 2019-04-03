@@ -20,7 +20,7 @@ def hello_world():
 
 @app.route("/1", methods = ["GET", "POST"])
 def app1():
-    pass
+    return render_template("spending.html")
 
 
 @app.route("/2", methods = ["GET", "POST"])
