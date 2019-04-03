@@ -150,7 +150,8 @@ for dis in ALLDIS:
     for year in ALLYEARS: #this is a LIST of every disctric
         for singleDis in year:
             if singleDis['csd'] == str(dis):
-                d[singleDis['year']] = singleDis['grand_total_csd']
+                d['year'] = singleDis['year']
+                d['money'] = singleDis['grand_total_csd']
     YearlyData.append(d)
     #for every year (x), pull out district (y) and create a dictionary with key
 
