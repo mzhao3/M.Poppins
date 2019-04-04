@@ -15,7 +15,7 @@ app = Flask(__name__) #create instance of class flask
 
 @app.route("/", methods = ["GET", "POST"])
 def hello_world():
-    return "<a href = 'localhost:5000/1'> 1 </a><br><a href = 'localhost:5000/2'> 2 </a>"
+    return render_template("land.html")
 
 @app.route("/1", methods = ["GET", "POST"])
 def app1():
