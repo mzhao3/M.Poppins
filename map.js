@@ -1,10 +1,7 @@
 // Width and Height of the whole visualization
-var width = 700;
-var height = 580;
-var mdata = fetch("https://raw.githubusercontent.com/mzhao3/Poppins/master/data/nyc_map.json")
-.then(response => response.json())
-	.then(parsed => console.log(parsed)/* parsed contains the parsed json object */);
-console.log(mdata)
+var width = 800;
+var height = 800;
+
 // Create SVG
 var svg = d3.select( "body" )
     .append( "svg" )
@@ -15,25 +12,66 @@ var svg = d3.select( "body" )
 // g will contain geometry elements
 var g = svg.append( "g" );
 
-// Width and Height of the whole visualization
-// Set Projection Parameters
+
+// Set projection to fit the screen
 var albersProjection = d3.geoAlbers()
-    .scale(400 )
-    .rotate( [71.057,0] )
-    .center( [0, 0] )
-    .translate( [width/2,height/2] );
+    .fitSize([width, height], neighborhoods_json);
 
 // Create GeoPath function that uses built-in D3 functionality to turn
 // lat/lon coordinates into screen coordinates
 var geoPath = d3.geoPath()
     .projection( albersProjection );
 
-console.log(mdata)
 // Classic D3... Select non-existent elements, bind the data, append the elements, and apply attributes
 g.selectAll( "path" )
-    .data( mdata.features )
+    .data( district_json.features )
     .enter()
     .append( "path" )
     .attr( "fill", "#ccc" )
     .attr( "stroke", "#333")
-    .attr( "d", geoPath );
+    .attr( "d", geoPath )
+    .attr( "class", "district" )
+
+    .on( "mouseover", function ( d ) {
+			d3.select( "h2" )
+				.text( d.properties.SchoolDist );
+			d3.select( this )
+				.attr( "class", "district hover" );
+		} )
+    .on( "mouseout", function ( d ) {
+			d3.select( "h2" )
+				.text( "" );
+			d3.select( this )
+				.attr( "class", "district" );
+      });
+
+var districts = [];
+
+var spend_data = {}
+d3.csv("https://raw.githubusercontent.com/mzhao3/Poppins/master/data/csd_expend.csv", function(csv){
+
+  console.log(csv)
+  for (var i = 0 ; i < csv.length ; i++) {
+    districts[parseInt(csv[i]["csd"])] = parseInt(csv[i]["csd"]);
+    if (csv[i]["year"] == "2005")
+      spend_data[parseInt(csv[i]["csd"])] = csv[i]["support_csd"];
+  }
+  console.log(districts)
+  console.log(spend_data)
+
+});
+
+g.selectAll("rect")
+   .data(district_json.features)
+   .enter().append("rect")
+   .attr("x", function(d) {
+       return geoPath.centroid(d)[0];
+   })
+   .attr("y", function(d) {
+       return geoPath.centroid(d)[1];
+   })
+   .attr("width", 12)
+   .style("fill", "green")
+   .attr("text-anchor", "middle")
+   .attr("font-size", "12px")
+   .text("foo")
