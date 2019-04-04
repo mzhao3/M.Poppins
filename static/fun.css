@@ -2,6 +2,15 @@ body {
 background-color: #f7eff3
 }
 
-div.side{
+#side{
   text-align: center;
+}
+
+#sector1{
+  background-color: #ffffff
+}
+
+#pages{
+  text-align: center;
+
 }
