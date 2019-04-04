@@ -17,3 +17,5 @@ def search():
     #ancillary support services
     #building services
     pass
+
+print(data)
