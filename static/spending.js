@@ -1,3 +1,27 @@
+var i;
+for (i=1; i<=30; i++){
+    var button = document.createElement("BUTTON");
+    button.id = i.toString();
+    button.innerHTML = "District " + i.toString();
+    button.addEventListener('click', function(e){
+
+	var lineFunction = multiline('money');
+	console.log(button.id);
+	console.log(data2);
+	console.log(data2[1]);
+	console.log(parseInt(button.id));
+	
+
+	g.append("path")
+	    .datum(data2[0]) 
+	    .attr("class", "line")
+	    .style("stroke", color(i))
+	    .attr("d", lineFunction);
+
+    });
+    document.body.appendChild(button);
+};
+
 //create svg
 var svg = d3.select("body").append("svg")
     .attr("width", 1000)
@@ -8,36 +32,6 @@ var margin = {left:100, right:100, top: 100, bottom: 100}
 var width = svg.attr("width") - margin.left - margin.right;
 var height = svg.attr("height") - margin.bottom - margin.top;
 
-//data for line graph
-var data = [    
-    {'year': '2004', 'money': '16717.15426171'},
-    {'year': '2005', 'money': '17441.49270092'},
-    {'year': '2006', 'money': '17990.85670371'},
-    {'year': '2007', 'money': '18073.00221438'},
-    {'year': '2008', 'money': '18927.64888769'},
-    {'year': '2009', 'money': '19170.16312815'},
-    {'year': '2010', 'money': '19006.92053506'},
-    {'year': '2011', 'money': '18332.42167695'},
-    {'year': '2012', 'money': '18195.40660522'}    
-]
-
-/*
-var districts = [];
-
-var spend_data = {}
-d3.csv("https://github.com/mzhao3/Poppins/blob/master/data/hsfix.csv", function(csv){
-
-  console.log(csv)
-  for (var i = 0 ; i < csv.length ; i++) {
-    districts[parseInt(csv[i]["csd"])] = parseInt(csv[i]["csd"]);
-    if (csv[i]["year"] == "2005")
-      spend_data[parseInt(csv[i]["csd"])] = csv[i]["grand_total_csd"];
-  }
-  console.log(districts)
-  console.log(spend_data)
-
-});
-*/
 
 //axis parameters
 var x = d3.scaleTime()
@@ -50,6 +44,49 @@ var y_axis = d3.axisBottom(y);
 
 var xFormat = "%Y";;
 var parseTime = d3.timeParse("%Y");
+
+//data for line graph
+var data2 = [    
+    [
+	{'year': '2004', 'money': '16717.15426171'},
+	{'year': '2005', 'money': '17441.49270092'},
+	{'year': '2006', 'money': '17990.85670371'},
+	{'year': '2007', 'money': '18073.00221438'},
+	{'year': '2008', 'money': '18927.64888769'},
+	{'year': '2009', 'money': '19170.16312815'},
+	{'year': '2010', 'money': '19006.92053506'},
+	{'year': '2011', 'money': '18332.42167695'},
+	{'year': '2012', 'money': '18195.40660522'}
+    ],
+
+    [
+	{'money': '13584.63764498', 'year': '2004'},
+	{'money': '14244.36107035', 'year': '2005'},
+	{'money': '15505.18152111', 'year': '2006'},
+	{'money': '15988.37476454', 'year': '2007'},
+	{'money': '16957.31274044', 'year': '2008'},
+	{'money': '17288.15451863', 'year': '2009'},
+	{'money': '17503.75996414', 'year': '2010'},
+	{'money': '17427.85903431', 'year': '2011'},
+	{'money': '17221.77266965', 'year': '2012'}
+    ]
+];
+
+var data = [    
+    
+	{'year': '2004', 'money': '16717.15426171'},
+	{'year': '2005', 'money': '17441.49270092'},
+	{'year': '2006', 'money': '17990.85670371'},
+	{'year': '2007', 'money': '18073.00221438'},
+	{'year': '2008', 'money': '18927.64888769'},
+	{'year': '2009', 'money': '19170.16312815'},
+	{'year': '2010', 'money': '19006.92053506'},
+	{'year': '2011', 'money': '18332.42167695'},
+	{'year': '2012', 'money': '18195.40660522'}
+    
+
+];
+
 
 x.domain(d3.extent(data, function(d) { return parseTime(d.year); }));
 y.domain([0, 
@@ -71,14 +108,6 @@ var g = svg.append("g")
     .attr("transform",
 	  "translate(" + margin.left + "," + margin.top + ")");
 
-for (i in categories) {
-    var lineFunction = multiline(categories[i]);
-    g.append("path")
-	.datum(data) 
-	.attr("class", "line")
-	.style("stroke", color(i))
-	.attr("d", lineFunction);
-}
 
 // add x-axis
 g.append("g")
