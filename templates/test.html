@@ -9,13 +9,33 @@
 <script>
 
 
-  d3.csv("https://raw.githubusercontent.com/mzhao3/Poppins/master/data/School_District_Breakdowns.csv", function(csv){
-  console.log(csv);
+
+  var data;
+  var f, m;
+  m = 10;
+  var a = "data";
+  
+  d3.csv("https://raw.githubusercontent.com/mzhao3/Poppins/master/data/2015-2016_Demographic_Data_-_Grades_9-12_School.csv", function(csv){
+  if (csv["School Name"] == "Stuyvesant High School" && csv["Category "] == "All Students"){
+  console.log(csv["Category "]);
+  console.log(csv["%Female"]);
+  console.log(csv["%Male"]);
+  data = [csv["%Female"], csv["%Male"]];
+  console.log(m);
+  m = csv["%Male"]
+  console.log("new m");
+  console.log(m);
+  f = csv["%Female"]
+  return m, f;
+  }
   });   
 
 
+
+  console.log(a);
   
-  var data = [10, 2, 4, 8, 10, 9];
+  data = [3, 4, 5, f, m];
+  console.log(f);
 
     var svg = d3.select("svg"),
         width = svg.attr("width"),
