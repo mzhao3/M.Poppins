@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+.h2 {
+	position:fixed
+}
+.svg{
+	position: fixed;
+  text-align: center;
+  padding: 2px;
+  font: 19px sans-serif;
+  background: #000;
+  color: #fff;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
+  opacity: 0;
+}
+</style>
+<meta charset="utf-8">
+<head>
+	<title> Sample Map </title>
+	<script src="http://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+  <script src="http://d3js.org/topojson.v1.min.js"></script>
+  <script type = "text/javascript" src="../static/nyc.json"></script>
+	<!-- src = https://raw.githubusercontent.com/dwillis/nyc-maps/master/school_districts.geojson -->
+	<script type = "text/javascript" src="../static/districts.json"></script>
+  <link rel="shortcut icon" href="">
+</head>
+<body>
+	<!-- Page elements and content go here.
+  <svg width="960" height="720" style="float: left"></svg>
+    <div id='neighborhoods'> </div>
+		 -->
+		 <div id="number"><h2></h2></div>
+		 <p> Choose what data you would like to display. </p>
+		 <select>
+			 <option value = "a"> a </option>
+			 <option value = "b"> b </option>
+			 <option value = "c"> c </option>
+		 </select>
+
+</body>
+<script src = "../map.js">	</script>
+</html>

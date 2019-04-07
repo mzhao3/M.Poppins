@@ -3,7 +3,7 @@
 ## Description of data sets:
 [2015-2016 Demographic Data - Grades 9-12 School](https://catalog.data.gov/dataset/2015-2016-demographic-data-grades-9-12-school)
 
-A collection of data regarding each school, including the demographic breakdown of students that are English language learners, in poverty, reside in temporary housing, or have disabilities. 
+A collection of data regarding each school, including the demographic breakdown of students that are English language learners, in poverty, reside in temporary housing, or have disabilities.
 
 [New York City School Spending Per Student](https://www.newyorkfed.org/data-and-statistics/data-visualization/nyc-school-spending#interactive/table)
 
@@ -55,20 +55,26 @@ Line graph
 
 ```
 $ python3 -m venv venv
-$ . venv/bin/activate 
+$ . venv/bin/activate
 ```
-  
+
 2. Clone the Poppins repository
 
-``` 
-$ git clone https://github.com/mzhao3/Poppins.git 
+```
+$ git clone https://github.com/mzhao3/Poppins.git
 ```
 
-3. Run the flask app
+3. Install dependencies in [requirements.txt] (/requirements.txt)
+
+```
+pip install -r requirements.txt
+```
+
+4. Run the flask app
 ```
 $ cd Poppins
-$ flask run 
+$ flask run
 ```
-  
+
 4. Open the flask app in your favorite browser!
   Go to http://127.0.0.1:5000/
