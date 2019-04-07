@@ -4,68 +4,16 @@
     <script src="https://d3js.org/d3.v5.min.js"></script>
     </head>
 
+
+  Stuyvesant High School<br>
 <body>
-<svg width="300" height="200"> </svg>
-<script>
+  <svg width="300" height="200"> </svg>
+
+
+<script src="test.js">
 
 
 
-  var data;
-  var f, m;
-  m = 10;
-  var a = "data";
-  
-  d3.csv("https://raw.githubusercontent.com/mzhao3/Poppins/master/data/2015-2016_Demographic_Data_-_Grades_9-12_School.csv", function(csv){
-  if (csv["School Name"] == "Stuyvesant High School" && csv["Category "] == "All Students"){
-  console.log(csv["Category "]);
-  console.log(csv["%Female"]);
-  console.log(csv["%Male"]);
-  data = [csv["%Female"], csv["%Male"]];
-  console.log(m);
-  m = csv["%Male"]
-  console.log("new m");
-  console.log(m);
-  f = csv["%Female"]
-  return m, f;
-  }
-  });   
-
-
-
-  console.log(a);
-  
-  data = [3, 4, 5, f, m];
-  console.log(f);
-
-    var svg = d3.select("svg"),
-        width = svg.attr("width"),
-        height = svg.attr("height"),
-        radius = Math.min(width, height) / 2,
-        g = svg.append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
-    var color = d3.scaleOrdinal(['#4daf4a','#377eb8','#ff7f00','#984ea3','#e41a1c', '#792B1A']);
-
-    // Generate the pie
-    var pie = d3.pie();
-
-    // Generate the arcs
-    var arc = d3.arc()
-                .innerRadius(0)
-                .outerRadius(radius);
-
-    //Generate groups
-    var arcs = g.selectAll("arc")
-                .data(pie(data))
-                .enter()
-                .append("g")
-                .attr("class", "arc")
-
-    //Draw arc paths
-    arcs.append("path")
-        .attr("fill", function(d, i) {
-            return color(i);
-        })
-        .attr("d", arc);
 </script>
 </body>
 </html>
