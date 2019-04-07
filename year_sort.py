@@ -158,4 +158,16 @@ for dis in ALLDIS:
     #for every year (x), pull out district (y) and create a dictionary with key
 
 print("====testing===")
-print(YearlyData[1])
+
+'''
+i = 1
+for district in YearlyData:
+        print("District " + str(i))
+        print(district)
+        i+=1
+'''
+print(YearlyData)
+
+
+
+
