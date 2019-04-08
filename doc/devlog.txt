@@ -19,7 +19,7 @@ pd 06
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 
-zhaoM -- 2019-03-27 01:55
+zhaoM -- 2019-03-27 
 Made the README.
 --------------------------------------------------------------
 
@@ -37,7 +37,7 @@ created year_sort.py to parse data
 issue w/ importing data using javascript
 --------------------------------------------------------------
 
-liK -- 2019-04-02 00:01
+liK -- 2019-04-02
 1. Line graph for district 1
 --------------------------------------------------------------
 
@@ -71,6 +71,10 @@ mohriC -- 2019-04-05
 Continued trying to obtain data from CSV.
 --------------------------------------------------------------
 
+liK -- 2019-04-05
+1. Line graph works for all districts.
+--------------------------------------------------------------
+
 wanK -- 2019-04-05
 updated sitemap and compenent map to match current
 redesigned
@@ -82,4 +86,10 @@ Succeeded in getting data from CSV, and added buttons and button listeners in or
 
 wanK -- 2019-04-07
 fixes n touch ups
+--------------------------------------------------------------
+
+liK -- 2019-04-07 
+1. Can hover over dots on line graph for exact coordinates.
+2. Can select or de-select the data you want to see on the same graph.
+3. Incorporated bootstrap.
 --------------------------------------------------------------
