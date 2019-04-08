@@ -21,7 +21,6 @@ def hello_world():
 def app1():
     return render_template("spending.html")
 
-
 @app.route("/2", methods = ["GET", "POST"])
 def app2():
     return render_template("test.html")

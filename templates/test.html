@@ -4,16 +4,36 @@
     <script src="https://d3js.org/d3.v5.min.js"></script>
     </head>
 
-
-  Stuyvesant High School<br>
-<body>
-  <svg width="300" height="200"> </svg>
+  <title>Racial Breakdown by School</title>
+  <h2>Racial Breakdown by School for 2015</h2>
 
 
-<script src="test.js">
+  Select a school from the list to view it's racial breakdown.
+  <br>
+  <hr>
+  <h3 id = "which_school">Stuyvesant High School</h3>  
+  <body>
+    <svg width="300" height="200"> </svg>
+    
+    
+    <script src = "{{ url_for('static', filename='test.js') }}"></script>
+<br><br>
+    Key: <br>
+    <ul>
+      <li>
+	Orange: Asian
+      <li>
+	Blue: White
+      <li>
+	Green: Hispanic
+      <li>
+	Yellow: Black
+      <li>
+	Red: Other
+    </ul>
 
 
-
-</script>
-</body>
+    
+    
+  </body>
 </html>
