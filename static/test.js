@@ -1,29 +1,29 @@
 function getCsv(schoolname) {
 
-  d3.csv("https://raw.githubusercontent.com/mzhao3/Poppins/master/data/2015-2016_Demographic_Data_-_Grades_9-12_School.csv", function(csv) {
-
-    if (!document.getElementById(csv["School Name"])) {
-      var button = document.createElement("BUTTON");
-      button.innerHTML = csv["School Name"];
-      button.id = csv["School Name"];
-      button.addEventListener('click', function(e) {
-        console.log("here")
-        console.log(this.id)
-        getCsv(this.id);
-        var title = document.getElementById("which_school");
-        console.log(title)
-        title.innerHTML = this.id;
-      });
-      document.getElementById("addhere").appendChild(button);
-    }
-
-    if (csv["School Name"] == schoolname && csv["Category "] == "All Students") {
-      //console.log(csv);
-      //console.log(csv["School Name"]);
-      data = [csv["#Asian"], csv["#Black"], csv["#White"], csv["#Hispanic"], csv["#Other"]];
-      //console.log(data);
-      var c = ['orange', 'yellow', 'blue', 'green', 'red']
-
+    d3.csv("https://raw.githubusercontent.com/mzhao3/Poppins/master/data/2015-2016_Demographic_Data_-_Grades_9-12_School.csv", function(csv) {
+	
+	if (!document.getElementById(csv["School Name"])) {
+	    var button = document.createElement("BUTTON");
+	    button.innerHTML = csv["School Name"];
+	    button.id = csv["School Name"];
+	    button.addEventListener('click', function(e) {
+		//console.log("here")
+		//console.log(this.id)
+		getCsv(this.id);
+		var title = document.getElementById("which_school");
+		console.log(title)
+		title.innerHTML = this.id;
+	    });
+	    document.getElementById("addhere").appendChild(button);
+	}
+	
+	if (csv["School Name"] == schoolname && csv["Category "] == "All Students") {
+	    //console.log(csv);
+	    //console.log(csv["School Name"]);
+	    data = [csv["#Asian"], csv["#Black"], csv["#White"], csv["#Hispanic"], csv["#Other"]];
+	    console.log(data);
+	    var c = ['orange', 'yellow', 'blue', 'green', 'red']
+	    
 
       var svg = d3.select("svg"),
         width = svg.attr("width"),
@@ -59,8 +59,8 @@ function getCsv(schoolname) {
       //Draw arc paths
       arcs.append("path")
         .attr("fill", function(d, i) {
-          console.log(d);
-          console.log(i);
+            //console.log(d);
+          //console.log(i);
           //console.log(color(i));
           return c[i];
         })
