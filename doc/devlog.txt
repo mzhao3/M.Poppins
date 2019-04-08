@@ -33,18 +33,25 @@ liK -- 2019-04-04 12:04
 
 mohriC -- 2019-04-01
 Worked on sunburst graph
+--------------------------------------------------------------
 
 mohriC -- 2019-04-02
 Decided that sunburst graph would not be implementable -- started working on pie chart instead
+--------------------------------------------------------------
 
 mohriC -- 2019-04-03
 Created working pie chart, with random data
+--------------------------------------------------------------
 
 mohriC -- 2019-04-04
 Began testing out getting data from CSV and putting into pie chart. Encountered errors with version of d3 being used.
+--------------------------------------------------------------
 
 mohriC -- 2019-04-05
 Continued trying to obtain data from CSV.
+--------------------------------------------------------------
 
 mohriC -- 2019-04-06
 Succeeded in getting data from CSV, and added buttons and button listeners in order to get pie charts for different schools.
+--------------------------------------------------------------
+ 
