@@ -28,7 +28,7 @@ def app2():
 
 @app.route("/3", methods = ["GET", "POST"])
 def app3():
-    pass
+    return render_template("map.html")
 
 
 if __name__ == "__main__":
