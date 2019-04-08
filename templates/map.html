@@ -2,10 +2,10 @@
 <html lang="en">
 <style>
 .h2 {
-	position:fixed
+	position:absolute
 }
 .svg{
-	position: fixed;
+	position: absolute;
   text-align: center;
   padding: 2px;
   font: 19px sans-serif;
@@ -31,7 +31,8 @@
   <svg width="960" height="720" style="float: left"></svg>
     <div id='neighborhoods'> </div>
 		 -->
-		 <div id="what"><h2></h2></div>
+		 <div id="what"><p>No district selected.</p></div>
+		 <div id = "select">
 		 <p> Choose what data you would like to display. </p>
 
 		 <select id = "spending">
@@ -55,7 +56,7 @@
 			<option value = "2012"> 2012 </option>
 	 	</select>
 
-
+</div>
 </body>
 <script src="{{ url_for('static', filename='map.js') }}">	</script>
 </html>

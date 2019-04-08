@@ -19,8 +19,12 @@ pd 06
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 
-zhaoM -- 2019-03-27 
-Made the README.
+zhaoM -- 2019-03-27 23:40
+Made and worked on the README.md
+--------------------------------------------------------------
+
+zhaoM -- 2019-03-29 20:14
+Added all raw CSV files and added text deliverables.
 --------------------------------------------------------------
 
 mohriC -- 2019-04-01
@@ -30,6 +34,15 @@ Worked on sunburst graph
 wanK -- 2019-04-01
 created templates
 created design doc
+--------------------------------------------------------------
+
+zhaoM -- 2019-04-01 16:20
+Updated README with launch instructions.
+--------------------------------------------------------------
+
+zhaoM -- 2019-04-01 19:30
+Added basic routes for the flask app.
+Attempted to create a map using geoJSON.
 --------------------------------------------------------------
 
 wanK -- 2019-04-02
@@ -54,6 +67,11 @@ mohriC -- 2019-04-03
 Created working pie chart, with random data
 --------------------------------------------------------------
 
+zhaoM -- 2019-04-03 21:28
+Messed around with loading json/csv files into JS with d3.
+Linked starter files to flask.
+--------------------------------------------------------------
+
 liK -- 2019-04-04 12:04
 1. Separate JS and html code
 --------------------------------------------------------------
@@ -67,6 +85,11 @@ mohriC -- 2019-04-04
 Began testing out getting data from CSV and putting into pie chart. Encountered errors with version of d3 being used.
 --------------------------------------------------------------
 
+zhaoM -- 2019-04-04 23:59
+Lots of trial and error with the map, but finally made it work :)
+Also basic dropdown for the map
+--------------------------------------------------------------
+
 mohriC -- 2019-04-05
 Continued trying to obtain data from CSV.
 --------------------------------------------------------------
@@ -76,8 +99,12 @@ liK -- 2019-04-05
 --------------------------------------------------------------
 
 wanK -- 2019-04-05
-updated sitemap and compenent map to match current
+updated sitemap and component map to match current
 redesigned
+--------------------------------------------------------------
+
+zhaoM -- 2019-04-05 15:30
+Trying to add a bar graph onto the map.
 --------------------------------------------------------------
 
 mohriC -- 2019-04-06
@@ -88,8 +115,14 @@ wanK -- 2019-04-07
 fixes n touch ups
 --------------------------------------------------------------
 
-liK -- 2019-04-07 
+liK -- 2019-04-07
 1. Can hover over dots on line graph for exact coordinates.
 2. Can select or de-select the data you want to see on the same graph.
 3. Incorporated bootstrap.
+--------------------------------------------------------------
+
+zhaoM -- 2019-04-07
+Helped out liK with dots on the line chart.
+Final rectangles (although still buggy, d3.max not returning proper max values)
+Hover text on map.
 --------------------------------------------------------------

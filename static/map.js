@@ -36,14 +36,14 @@ g.selectAll( "path" )
     .attr( "district", function(d) {
       return d.properties.SchoolDist})
     .on( "mouseover", function ( d ) {
-			d3.select( "h2" )
-				.text( d.properties.SchoolDist );
+			d3.select( "#what" )
+				.text( "District " + d.properties.SchoolDist  );
 			d3.select( this )
 				.attr( "class", "district hover" );
 		} )
     .on( "mouseout", function ( d ) {
-			d3.select( "h2" )
-				.text( "" );
+			d3.select( "#what" )
+				.text( "No district selected." );
 			d3.select( this )
 				.attr( "class", "district" );
       });
@@ -53,10 +53,6 @@ var search_year = "2005";
 
 var update = function(search_spend, search_year ) {
   d3.csv("https://raw.githubusercontent.com/mzhao3/Poppins/master/data/csd_expend.csv", function(csv){
-
-
-
-
   var districts = [];
 
   var spend_data = {};
@@ -67,21 +63,20 @@ var update = function(search_spend, search_year ) {
     districts[(csv[i]["csd"])] = [parseInt(csv[i]["csd"]), csv[i]["boro"]];
 
     if (csv[i]["year"] == search_year){
-      spend_data[parseInt(csv[i]["csd"])] = csv[i][search_spend + "_csd"];
-      avg_data[csv[i]["boro"]] = csv[i][search_spend + "_boro"];
-      avg_data["nyc"] = csv[i][search_spend + "_nyc"];
+      spend_data[parseInt(csv[i]["csd"])] = parseInt(csv[i][search_spend + "_csd"]);
+      avg_data[csv[i]["boro"]] = parseInt(csv[i][search_spend + "_boro"]);
+      avg_data["nyc"] = parseInt(csv[i][search_spend + "_nyc"]);
     }
   }
-  var min = d3.min([d3.min(d3.values(spend_data)), d3.min(d3.values(avg_data))] )
-  var max = d3.max([d3.max(d3.values(spend_data)), d3.max(d3.values(avg_data))] )
-  console.log(min)
-  console.log(max)
+  var min = d3.min([d3.min(d3.values(spend_data)), parseInt(d3.min(d3.values(avg_data)))] )
 
-  //console.log(spend_data)
+  var max = d3.max([parseInt(d3.max(d3.values(spend_data))), parseInt(d3.max(d3.values(avg_data)))] )
+
   var yScale = d3.scaleLinear()
     .domain([min,max])
-    .rangeRound([50,0]);
+    .rangeRound([0,50]);
 
+g.selectAll("rect").remove()
 var staterect =
   g.selectAll(".stateRect")
       .data(district_json.features)
@@ -95,30 +90,35 @@ var staterect =
         .attr("y", function(d) {
             return geoPath.centroid(d)[1];
         })
+        .attr("height", 0)
         .attr("height",
          function(d){
           return yScale(parseInt(spend_data[parseInt(d.properties.SchoolDist)]))} )
-
         .attr("width", 10)
         .style("fill", "steelblue")
         .on( "mouseover", function ( d ) {
-    			d3.select( "h2" )
-    				.text( d.properties.SchoolDist );
+    			d3.select( "#what" )
+    				.text( "District " + d.properties.SchoolDist + " " +
+                    dd_spend[dd_spend.selectedIndex].text + "   In this district: $" + parseFloat(spend_data[parseInt(d.properties.SchoolDist)]).toFixed(2) + "    In " + districts[d.properties.SchoolDist][1] + ": $" + parseFloat(avg_data[districts[d.properties.SchoolDist][1]]).toFixed(2) + "   In NYC: $" + parseFloat(avg_data["nyc"]).toFixed(2) + " ");
     			d3.select( this )
     				.attr( "class", "district hover" );
     		} )
         .on( "mouseout", function ( d ) {
-    			d3.select( "h2" )
-    				.text( "" );
+    			d3.select( "#what" )
+    				.text( "No district selected." );
     			d3.select( this )
     				.attr( "class", "district" );
           });
+
+staterect.exit().remove();
 staterect
   .transition().duration(10)
   .attr("height",
    function(d){
     return yScale(parseInt(spend_data[parseInt(d.properties.SchoolDist)]))} )
-staterect.exit().remove();
+
+
+g.selectAll(".boroRect").remove()
 var bororect =
 g.selectAll(".boroRect")
     .data(district_json.features)
@@ -142,23 +142,27 @@ g.selectAll(".boroRect")
         return colors[districts[d.properties.SchoolDist][1]];
       })
       .on( "mouseover", function ( d ) {
-  			d3.select( "h2" )
-  				.text( d.properties.SchoolDist );
+  			d3.select( "#what" )
+  				.text( "District " + d.properties.SchoolDist + " " +
+                  dd_spend[dd_spend.selectedIndex].text + "   In this district: $" + parseFloat(spend_data[parseInt(d.properties.SchoolDist)]).toFixed(2) + "    In " + districts[d.properties.SchoolDist][1] + ": $" + parseFloat(avg_data[districts[d.properties.SchoolDist][1]]).toFixed(2) + "   In NYC: $" + parseFloat(avg_data["nyc"]).toFixed(2) + " ");
   			d3.select( this )
   				.attr( "class", "district hover" );
   		} )
       .on( "mouseout", function ( d ) {
-  			d3.select( "h2" )
-  				.text( "" );
+  			d3.select( "#what" )
+  				.text( "No district selected." );
   			d3.select( this )
   				.attr( "class", "district" );
         });
+bororect.exit().remove();
 bororect
   .transition().duration(10)
   .attr("height",
    function(d){
     return yScale(parseInt(avg_data[districts[d.properties.SchoolDist][1]]))} )
-bororect.exit().remove();
+
+
+g.selectAll(".nycRect").remove()
 var nycrect =
 g.selectAll(".nycRect")
     .data(district_json.features)
@@ -177,23 +181,25 @@ g.selectAll(".nycRect")
       .attr("width", 10)
       .style("fill", colors["nyc"])
       .on( "mouseover", function ( d ) {
-  			d3.select( "h2" )
-  				.text( d.properties.SchoolDist );
+  			d3.select( "#what" )
+  				.text( "District " + d.properties.SchoolDist + " " +
+                  dd_spend[dd_spend.selectedIndex].text + "   In this district: $" + parseFloat(spend_data[parseInt(d.properties.SchoolDist)]).toFixed(2) + "    In " + districts[d.properties.SchoolDist][1] + ": $" + parseFloat(avg_data[districts[d.properties.SchoolDist][1]]).toFixed(2) + "   In NYC: $" + parseFloat(avg_data["nyc"]).toFixed(2) + " " );
   			d3.select( this )
   				.attr( "class", "district hover" );
   		} )
       .on( "mouseout", function ( d ) {
-  			d3.select( "h2" )
-  				.text( "" );
+  			d3.select( "#what" )
+  				.text( "No district selected." );
   			d3.select( this )
   				.attr( "class", "district" );
         });
-bororect
+nycrect.exit().remove();
+nycrect
   .transition().duration(10)
   .attr("height",
    function(d){
     return yScale(parseInt(avg_data["nyc"]))} )
-nycrect.exit().remove();
+
 });
 };
 update(search_spend, search_year);
