@@ -175,7 +175,7 @@ d3.csv("https://raw.githubusercontent.com/mzhao3/Poppins/master/data/csd_expend.
     //add x-axis label
     g.append("text")
 	.attr("x", 450 )
-	.attr("y",  375 )
+	.attr("y",  355 )
 	.style("text-anchor", "middle")
 	.text("Year");
 
@@ -192,7 +192,7 @@ d3.csv("https://raw.githubusercontent.com/mzhao3/Poppins/master/data/csd_expend.
   	.attr("class", "title")
   	.attr("x", 450 )
   	.attr("y",  -30 )
-	.attr("font-size", "20px")
+	.attr("font-size", "30px")
   	.style("text-anchor", "middle")
   	.text('Average District Spending Per Student');
 });

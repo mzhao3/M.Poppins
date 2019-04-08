@@ -26,13 +26,27 @@
       button{
       margin: 7px;
       }
+      svg {
+      display: block;
+      margin: 0 auto;
+      }
     </style>
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
   </head>
 
-  <body>
+  <body style="background-color:#FB9F89;">
+    <h4 style="text-align:center;">
+      <li>Click a button to generate a line graph for the corresponding district.</li>
+      <li>Click the button again to remove the line graph.</li>
+      <li>Hover over a point to see the exact coordinates.</li>
+    </ul>
+    </h4>
+    <hr>
+    
+    
+    
     <div class="btn-toolbar" id="toolbar">
     </div>
-     <script type="text/javascript" src="{{ url_for('static', filename='spending.js') }}" ></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='spending.js') }}" ></script>
   </body>
 </html>
