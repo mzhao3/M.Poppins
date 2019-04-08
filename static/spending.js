@@ -17,14 +17,16 @@ d3.csv("https://raw.githubusercontent.com/mzhao3/Poppins/master/data/csd_expend.
 	    district_data = data[parseInt(this.id)-1];
 	    var isDrawn = this.getAttribute("drawn");
 	    if(isDrawn==1){
+		this.setAttribute("class", "btn btn-info");
+		
 		//clear district data
-		console.log("inside if");
   		d3.select("#district"+this.id.toString()).remove();
 		d3.select("text.line_label").remove();
 		d3.selectAll(".district"+this.id.toString()).remove();
 		this.setAttribute("drawn", 0);
 	    }
 	    else{
+		this.setAttribute("class", "btn btn-info active");
 		//draw line
   		g.append("path")
   		    .datum(district_data)
