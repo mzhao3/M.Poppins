@@ -50,7 +50,7 @@ Data Map:
 Line graph
 ![alt text](/doc/time.png "time")
 
-## Launch Codes
+## Launch Instructions
 1. Create and open your virtual environment
 
 ```
