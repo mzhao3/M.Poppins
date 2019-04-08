@@ -27,12 +27,27 @@ mohriC -- 2019-04-01
 Worked on sunburst graph
 --------------------------------------------------------------
 
+wanK -- 2019-04-01
+created templates
+created design doc
+--------------------------------------------------------------
+
+wanK -- 2019-04-02
+created year_sort.py to parse data
+issue w/ importing data using javascript
+--------------------------------------------------------------
+
 liK -- 2019-04-02 00:01
 1. Line graph for district 1
 --------------------------------------------------------------
 
 mohriC -- 2019-04-02
 Decided that sunburst graph would not be implementable -- started working on pie chart instead
+--------------------------------------------------------------
+
+wanK -- 2019-04-03
+redid year_sort.py for better implementation
+created site map
 --------------------------------------------------------------
 
 mohriC -- 2019-04-03
@@ -43,6 +58,10 @@ liK -- 2019-04-04 12:04
 1. Separate JS and html code
 --------------------------------------------------------------
 
+wanK -- 2019-04-04
+created landing page to connect all charts
+still having issue w/ loading javascript
+--------------------------------------------------------------
 
 mohriC -- 2019-04-04
 Began testing out getting data from CSV and putting into pie chart. Encountered errors with version of d3 being used.
@@ -52,6 +71,15 @@ mohriC -- 2019-04-05
 Continued trying to obtain data from CSV.
 --------------------------------------------------------------
 
+wanK -- 2019-04-05
+updated sitemap and compenent map to match current
+redesigned
+--------------------------------------------------------------
+
 mohriC -- 2019-04-06
 Succeeded in getting data from CSV, and added buttons and button listeners in order to get pie charts for different schools.
+--------------------------------------------------------------
+
+wanK -- 2019-04-07
+fixes n touch ups
 --------------------------------------------------------------
