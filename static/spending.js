@@ -4,12 +4,20 @@ d3.csv("https://raw.githubusercontent.com/mzhao3/Poppins/master/data/csd_expend.
     for (i=1; i<=32; i++){
 	var button = document.createElement("BUTTON");
 	button.id = i.toString();
-	button.innerHTML = "District " + i.toString();
+	if(i < 10){
+	    button.innerHTML = "District 0" + i.toString();
+	}
+	else{
+	    button.innerHTML = "District " + i.toString();
+	}
+	
 	button.setAttribute("drawn", 0);
+	button.setAttribute("class", "btn btn-info");
 	button.addEventListener('click', function(e){
 	    district_data = data[parseInt(this.id)-1];
 	    var isDrawn = this.getAttribute("drawn");
 	    if(isDrawn==1){
+		//clear district data
 		console.log("inside if");
   		d3.select("#district"+this.id.toString()).remove();
 		d3.select("text.line_label").remove();
@@ -17,6 +25,7 @@ d3.csv("https://raw.githubusercontent.com/mzhao3/Poppins/master/data/csd_expend.
 		this.setAttribute("drawn", 0);
 	    }
 	    else{
+		//draw line
   		g.append("path")
   		    .datum(district_data)
   		    .attr("id", "district"+this.id.toString())
@@ -24,6 +33,7 @@ d3.csv("https://raw.githubusercontent.com/mzhao3/Poppins/master/data/csd_expend.
   		    .style("stroke", color(i))
   		    .attr("d", lineFunction);
 
+		//draw dots
 		g.selectAll("dot")
 		    .data(district_data)
   		    .enter().append("circle")
@@ -32,7 +42,21 @@ d3.csv("https://raw.githubusercontent.com/mzhao3/Poppins/master/data/csd_expend.
 		    .attr("cx", function(d) {
 			return x(parseTime(d.year)); })
 		    .attr("cy", function(d) {
-			return y(d.money); });
+			return y(d.money); })
+		    .on("mouseover", function(d) {		
+			div.transition()		
+			    .duration(200)		
+			    .style("opacity", .9);		
+			div.html(d.year + "<br>" + d.money)	
+			    .style("left", (d3.event.pageX) + "px")		
+			    .style("top", (d3.event.pageY - 28) + "px");	
+		    })					
+		    .on("mouseout", function(d) {		
+			div.transition()		
+			    .duration(500)		
+			    .style("opacity", 0);	
+		    });
+
 
 		//label line
 		g.append("text")
@@ -42,6 +66,7 @@ d3.csv("https://raw.githubusercontent.com/mzhao3/Poppins/master/data/csd_expend.
 		    .attr("text-anchor", "start")
 		    .style("fill", "steelblue")
 		    .text('District ' + this.id.toString());
+		
 		this.setAttribute("drawn", 1);
 	    };
 	    
@@ -49,6 +74,11 @@ d3.csv("https://raw.githubusercontent.com/mzhao3/Poppins/master/data/csd_expend.
 	});
 	document.body.appendChild(button);
     };
+
+    // Define the div for the tooltip
+    var div = d3.select("body").append("div")	
+	.attr("class", "tooltip")				
+	.style("opacity", 0);
 
 
     //create svg
@@ -109,7 +139,6 @@ d3.csv("https://raw.githubusercontent.com/mzhao3/Poppins/master/data/csd_expend.
 	[{'year': '2004', 'money': '13749.52982015'}, {'year': '2005', 'money': '14606.17325336'}, {'year': '2006', 'money': '15890.40443399'}, {'year': '2007', 'money': '16453.507403'}, {'year': '2008', 'money': '17328.09829'}, {'year': '2009', 'money': '17863.61868519'}, {'year': '2010', 'money': '18294.39665531'}, {'year': '2011', 'money': '17635.72682373'}, {'year': '2012', 'money': '17345.21460009'}],
 	[{'year': '2004', 'money': '15098.3645062'}, {'year': '2005', 'money': '15945.53456839'}, {'year': '2006', 'money': '17184.23694361'}, {'year': '2007', 'money': '17576.13763825'}, {'year': '2008', 'money': '18497.2928006'}, {'year': '2009', 'money': '18921.52640154'}, {'year': '2010', 'money': '18877.77686426'}, {'year': '2011', 'money': '18658.79888729'}, {'year': '2012', 'money': '17965.6563677'}]];
 
-    console.log(data[0])
     x.domain(d3.extent(data[0], function(d) { return parseTime(d.year); }));
     y.domain([0,
   	      d3.max(data[0], function(d) {
@@ -163,7 +192,8 @@ d3.csv("https://raw.githubusercontent.com/mzhao3/Poppins/master/data/csd_expend.
   	.attr("class", "title")
   	.attr("x", 450 )
   	.attr("y",  -30 )
+	.attr("font-size", "20px")
   	.style("text-anchor", "middle")
-  	.text('Average School Spending');
+  	.text('Average District Spending Per Student');
 });
 
