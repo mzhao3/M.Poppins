@@ -63,13 +63,15 @@ d3.csv("https://raw.githubusercontent.com/mzhao3/Poppins/master/data/hsfix.csv")
 
   for (dis in allDis){
     //allDis = [1.....32]
-    console.log(allDis[dis])
+    //console.log(allDis[dis])
     var L = [];
     for (year in allYears ){
       d = {};
       for (singleDis in year){
         //console.log(singleDis)
         if (singleDis['csd'] == String(dis)){
+          console.log('is this coming')
+          console.log(singleDis['year'])
           d['year'] = singleDis['year']
           d['money'] = singleDis['grand_total_csd']
         }
