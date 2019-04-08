@@ -26,8 +26,9 @@ var albersProjection = d3.geoAlbers()
 var geoPath = d3.geoPath()
     .projection( albersProjection );
 
-// creates non-existent "path" elements from the geoJSON
-// adds attributes for
+// creates  "path" elements using data from the geoJSON
+// adds attributes for district #
+// adds mouseover feature
 g.selectAll( "path" )
     .data( district_json.features )
     .enter()
@@ -49,10 +50,11 @@ g.selectAll( "path" )
 				.text( "No district selected." );
 			d3.select( this )
 				.attr( "class", "district" );
-      });
+    });
+
+// default chart values
 var search_spend = "support";
 var search_year = "2005";
-
 
 var update = function(search_spend, search_year ) {
   d3.csv("https://raw.githubusercontent.com/mzhao3/Poppins/master/data/csd_expend.csv", function(csv){
@@ -83,15 +85,15 @@ var update = function(search_spend, search_year ) {
   var staterect =
   g.selectAll(".stateRect")
       .data(district_json.features)
-        .enter().append("rect")
+      .enter().append("rect")
         .attr("district", function(d) {
           return d.properties.SchoolDist
         })
         .attr("x", function(d) {
-            return geoPath.centroid(d)[0]+10;
+          return geoPath.centroid(d)[0]+10;
         })
         .attr("y", function(d) {
-            return geoPath.centroid(d)[1];
+          return geoPath.centroid(d)[1];
         })
         .attr("height", 0)
         .attr("height",
@@ -101,7 +103,7 @@ var update = function(search_spend, search_year ) {
         .style("fill", "steelblue")
         .on( "mouseover", function ( d ) {
     			d3.select( "#what" )
-    				.text("Showing spending for "+ dd_spend[dd_spend.selectedIndex].text + " in District "+ d.properties.SchoolDist + ": $" + parseFloat(spend_data[parseInt(d.properties.SchoolDist)]).toFixed(2) + "    In " + districts[d.properties.SchoolDist][1] + ": $" + parseFloat(avg_data[districts[d.properties.SchoolDist][1]]).toFixed(2) + "   In NYC: $" + parseFloat(avg_data["NYC"]).toFixed(2) + " ");
+    				.text("Showing spending for "+ dd_spend[dd_spend.selectedIndex].text + "- in District "+ d.properties.SchoolDist + ": $" + parseFloat(spend_data[parseInt(d.properties.SchoolDist)]).toFixed(2) + "    In " + districts[d.properties.SchoolDist][1] + ": $" + parseFloat(avg_data[districts[d.properties.SchoolDist][1]]).toFixed(2) + "   In NYC: $" + parseFloat(avg_data["NYC"]).toFixed(2) + " ");
     			d3.select( this )
     				.attr( "class", "district hover" );
     		} )
@@ -145,7 +147,7 @@ g.selectAll(".boroRect")
       })
       .on( "mouseover", function ( d ) {
   			d3.select( "#what" )
-  				.text("Showing spending for "+ dd_spend[dd_spend.selectedIndex].text + " in District "+ d.properties.SchoolDist + ": $" + parseFloat(spend_data[parseInt(d.properties.SchoolDist)]).toFixed(2) + "    In " + districts[d.properties.SchoolDist][1] + ": $" + parseFloat(avg_data[districts[d.properties.SchoolDist][1]]).toFixed(2) + "   In NYC: $" + parseFloat(avg_data["NYC"]).toFixed(2) + " ");
+  				.text("Showing spending for "+ dd_spend[dd_spend.selectedIndex].text + "- in District "+ d.properties.SchoolDist + ": $" + parseFloat(spend_data[parseInt(d.properties.SchoolDist)]).toFixed(2) + "    In " + districts[d.properties.SchoolDist][1] + ": $" + parseFloat(avg_data[districts[d.properties.SchoolDist][1]]).toFixed(2) + "   In NYC: $" + parseFloat(avg_data["NYC"]).toFixed(2) + " ");
   			d3.select( this )
   				.attr( "class", "district hover" );
   		} )
@@ -183,7 +185,7 @@ g.selectAll(".nycRect")
       .style("fill", colors["NYC"])
       .on( "mouseover", function ( d ) {
   			d3.select( "#what" )
-  				.text("Showing spending for "+ dd_spend[dd_spend.selectedIndex].text + " in District "+ d.properties.SchoolDist + ": $" + parseFloat(spend_data[parseInt(d.properties.SchoolDist)]).toFixed(2) + "    In " + districts[d.properties.SchoolDist][1] + ": $" + parseFloat(avg_data[districts[d.properties.SchoolDist][1]]).toFixed(2) + "   In NYC: $" + parseFloat(avg_data["NYC"]).toFixed(2) + " ");
+  				.text("Showing spending for "+ dd_spend[dd_spend.selectedIndex].text + "- in District "+ d.properties.SchoolDist + ": $" + parseFloat(spend_data[parseInt(d.properties.SchoolDist)]).toFixed(2) + "    In " + districts[d.properties.SchoolDist][1] + ": $" + parseFloat(avg_data[districts[d.properties.SchoolDist][1]]).toFixed(2) + "   In NYC: $" + parseFloat(avg_data["NYC"]).toFixed(2) + " ");
   			d3.select( this )
   				.attr( "class", "district hover" );
   		} )
