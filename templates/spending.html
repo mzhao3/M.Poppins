@@ -11,17 +11,17 @@
       stroke: steelblue;
       stroke-width: 1.5px;
       }
-      div.tooltip {	
-      position: absolute;			
-      text-align: center;			
-      width: 100px;					
-      height: 28px;					
-      padding: 2px;				
-      font: 12px sans-serif;		
-      background: lightsteelblue;	
-      border: 0px;		
-      border-radius: 8px;			
-      pointer-events: none;			
+      div.tooltip {
+      position: absolute;
+      text-align: center;
+      width: 100px;
+      height: 28px;
+      padding: 2px;
+      font: 12px sans-serif;
+      background: lightsteelblue;
+      border: 0px;
+      border-radius: 8px;
+      pointer-events: none;
       }
       button{
       margin: 7px;
@@ -34,17 +34,19 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
   </head>
 
-  <body style="background-color:#FB9F89;">
+  <body style="background-color:#f7eff3;">
     <h4 style="text-align:center;">
-      <li>Click a button to generate a line graph for the corresponding district.</li>
-      <li>Click the button again to remove the line graph.</li>
-      <li>Hover over a point to see the exact coordinates.</li>
+      <a href="http://127.0.0.1:5000" class="btn btn-outline-info">Return to Home Page</a><br>
+      <hr>
+      Click a button to generate a line graph for the corresponding district.<br>
+      Click the button again to remove the line graph.<br>
+      Hover over a point to see the exact coordinates.<br>
     </ul>
     </h4>
     <hr>
-    
-    
-    
+
+
+
     <div class="btn-toolbar" id="toolbar">
     </div>
     <script type="text/javascript" src="{{ url_for('static', filename='spending.js') }}" ></script>
