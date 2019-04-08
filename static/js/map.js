@@ -1,30 +1,33 @@
-// Width and Height of the whole visualization
+
+// width and height of the whole visualization
 var width = 600;
 var height = 600;
 
-var colors = {"nyc": "black", "Staten Island": "red", "Brooklyn":"green", "Queens":"orange", "Bronx": "blue", "Manhattan": "purple"}
-// Create SVG
+// colors used in bar graph
+var colors = {"NYC": "black", "Staten Island": "red", "Brooklyn":"green", "Queens":"orange", "Bronx": "blue", "Manhattan": "purple"}
+
+// create the SVG
 var svg = d3.select( "body" )
     .append( "svg" )
     .attr( "width", width )
     .attr( "height", height );
 
-// Append empty placeholder g element to the SVG
+// append empty placeholder g element to the SVG
 // g will contain geometry elements
 var g = svg.append( "g" );
 
 
-// Set projection to fit the screen
+// set projection to fit the screen
 var albersProjection = d3.geoAlbers()
     .rotate( [71.057,0] )
     .fitSize([width, height], district_json);
 
-// Create GeoPath function that uses built-in D3 functionality to turn
-// lat/lon coordinates into screen coordinates
+// create GeoPath function that turns lat/lon coordinates into screen coordinates
 var geoPath = d3.geoPath()
     .projection( albersProjection );
 
-// Classic D3... Select non-existent elements, bind the data, append the elements, and apply attributes
+// creates non-existent "path" elements from the geoJSON
+// adds attributes for
 g.selectAll( "path" )
     .data( district_json.features )
     .enter()
@@ -65,7 +68,7 @@ var update = function(search_spend, search_year ) {
     if (csv[i]["year"] == search_year){
       spend_data[parseInt(csv[i]["csd"])] = parseInt(csv[i][search_spend + "_csd"]);
       avg_data[csv[i]["boro"]] = parseInt(csv[i][search_spend + "_boro"]);
-      avg_data["nyc"] = parseInt(csv[i][search_spend + "_nyc"]);
+      avg_data["NYC"] = parseInt(csv[i][search_spend + "_nyc"]);
     }
   }
   var min = d3.min([d3.min(d3.values(spend_data)), parseInt(d3.min(d3.values(avg_data)))] )
@@ -76,8 +79,8 @@ var update = function(search_spend, search_year ) {
     .domain([min,max])
     .rangeRound([0,50]);
 
-g.selectAll("rect").remove()
-var staterect =
+  g.selectAll("rect").remove()
+  var staterect =
   g.selectAll(".stateRect")
       .data(district_json.features)
         .enter().append("rect")
@@ -98,7 +101,7 @@ var staterect =
         .style("fill", "steelblue")
         .on( "mouseover", function ( d ) {
     			d3.select( "#what" )
-    				.text(dd_spend[dd_spend.selectedIndex].text + ": In District "+ d.properties.SchoolDist + ": $" + parseFloat(spend_data[parseInt(d.properties.SchoolDist)]).toFixed(2) + "    In " + districts[d.properties.SchoolDist][1] + ": $" + parseFloat(avg_data[districts[d.properties.SchoolDist][1]]).toFixed(2) + "   In NYC: $" + parseFloat(avg_data["nyc"]).toFixed(2) + " ");
+    				.text("Showing spending for "+ dd_spend[dd_spend.selectedIndex].text + " in District "+ d.properties.SchoolDist + ": $" + parseFloat(spend_data[parseInt(d.properties.SchoolDist)]).toFixed(2) + "    In " + districts[d.properties.SchoolDist][1] + ": $" + parseFloat(avg_data[districts[d.properties.SchoolDist][1]]).toFixed(2) + "   In NYC: $" + parseFloat(avg_data["NYC"]).toFixed(2) + " ");
     			d3.select( this )
     				.attr( "class", "district hover" );
     		} )
@@ -142,7 +145,7 @@ g.selectAll(".boroRect")
       })
       .on( "mouseover", function ( d ) {
   			d3.select( "#what" )
-  				.text(dd_spend[dd_spend.selectedIndex].text + ": In District "+ d.properties.SchoolDist + ": $" + parseFloat(spend_data[parseInt(d.properties.SchoolDist)]).toFixed(2) + "    In " + districts[d.properties.SchoolDist][1] + ": $" + parseFloat(avg_data[districts[d.properties.SchoolDist][1]]).toFixed(2) + "   In NYC: $" + parseFloat(avg_data["nyc"]).toFixed(2) + " ");
+  				.text("Showing spending for "+ dd_spend[dd_spend.selectedIndex].text + " in District "+ d.properties.SchoolDist + ": $" + parseFloat(spend_data[parseInt(d.properties.SchoolDist)]).toFixed(2) + "    In " + districts[d.properties.SchoolDist][1] + ": $" + parseFloat(avg_data[districts[d.properties.SchoolDist][1]]).toFixed(2) + "   In NYC: $" + parseFloat(avg_data["NYC"]).toFixed(2) + " ");
   			d3.select( this )
   				.attr( "class", "district hover" );
   		} )
@@ -165,7 +168,7 @@ var nycrect =
 g.selectAll(".nycRect")
     .data(district_json.features)
       .enter().append("rect")
-      .attr("city", "nyc")
+      .attr("city", "NYC")
       .attr("x", function(d) {
           return geoPath.centroid(d)[0]-10;
       })
@@ -174,13 +177,13 @@ g.selectAll(".nycRect")
       })
       .attr("height",
        function(d){
-        return yScale(parseInt(avg_data["nyc"]))} )
+        return yScale(parseInt(avg_data["NYC"]))} )
 
       .attr("width", 10)
-      .style("fill", colors["nyc"])
+      .style("fill", colors["NYC"])
       .on( "mouseover", function ( d ) {
   			d3.select( "#what" )
-  				.text(dd_spend[dd_spend.selectedIndex].text + ": In District "+ d.properties.SchoolDist + ": $" + parseFloat(spend_data[parseInt(d.properties.SchoolDist)]).toFixed(2) + "    In " + districts[d.properties.SchoolDist][1] + ": $" + parseFloat(avg_data[districts[d.properties.SchoolDist][1]]).toFixed(2) + "   In NYC: $" + parseFloat(avg_data["nyc"]).toFixed(2) + " ");
+  				.text("Showing spending for "+ dd_spend[dd_spend.selectedIndex].text + " in District "+ d.properties.SchoolDist + ": $" + parseFloat(spend_data[parseInt(d.properties.SchoolDist)]).toFixed(2) + "    In " + districts[d.properties.SchoolDist][1] + ": $" + parseFloat(avg_data[districts[d.properties.SchoolDist][1]]).toFixed(2) + "   In NYC: $" + parseFloat(avg_data["NYC"]).toFixed(2) + " ");
   			d3.select( this )
   				.attr( "class", "district hover" );
   		} )
@@ -195,7 +198,7 @@ nycrect
   .transition().duration(10)
   .attr("height",
    function(d){
-    return yScale(parseInt(avg_data["nyc"]))} )
+    return yScale(parseInt(avg_data["NYC"]))} )
 
 });
 };

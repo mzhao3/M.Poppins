@@ -1,6 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <style>
+
+  .line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+  }
+  div.tooltip {
+  position: absolute;
+  text-align: center;
+  width: 100px;
+  height: 28px;
+  padding: 2px;
+  font: 12px sans-serif;
+  background: lightsteelblue;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
+  }
+  button{
+  margin: 7px;
+  }
+  svg {
+  display: block;
+  margin: 0 auto;
+  }
 .h2 {
 	position:absolute
 }
@@ -33,18 +58,54 @@
 </style>
 <meta charset="utf-8">
 <head>
-	
+	<title> Poppins </title>
+  <link href="/static/css/fun.css" rel="stylesheet" >
 	<script src="http://d3js.org/d3.v4.min.js" charset="utf-8"></script>
   <script src="http://d3js.org/topojson.v1.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  
 	<!-- src = https://raw.githubusercontent.com/dwillis/nyc-maps/master/school_districts.geojson -->
 	<script type = "text/javascript" src="{{ url_for('static', filename='data/districts.json') }}"></script>
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-	<link href="/static/css/fun.css" rel="stylesheet" >
+
 
 </head>
-<body>
-	<a href="http://127.0.0.1:5000" class="btn btn-outline-info">Return to Home Page</a><br>
-		 <div id="what"><p>No district selected.</p></div>
+<body style="background-color:#f7eff3;">
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#"> <img src="{{url_for('static', filename='images/pop.png')}}" width = "50px" height = "50px">Team Poppins </a>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <br>
+      <br>
+    </div>
+    <div id = "sector1">
+    <br>
+    <div class="container">
+      <div class="jumbotron">
+        <h1>New York City Public High School</h1>
+        <p>An overview of demographics and breakdowns</p>
+      </div>
+    </div>
+  </div>
+  </div>
+  <h4 style="text-align:center;">
+    <hr>
+    Click a button to generate a line graph for the corresponding district.<br>
+    Click the button again to remove the line graph.<br>
+    Hover over a point to see the exact coordinates.<br>
+
+  </h4>
+  <hr>
+
+
+
+  <div class="btn-toolbar" id="toolbar">
+  </div>
+
+
+
 		 <div id = "select">
 		 <p> Choose what data you would like to display. </p>
 
@@ -68,6 +129,7 @@
 			<option value = "2011"> 2011 </option>
 			<option value = "2012"> 2012 </option>
 	 	</select>
+    <div id="what"><p>No district selected.</p></div>
 </div>
 <div class="row">
 
@@ -91,11 +153,11 @@
 		</ul>
 
 	</div>
-	<div class="col">
+</div>
 
-	</div>
-</div>
-</div>
 </body>
-<script src="{{ url_for('static', filename='js/map.js') }}">	</script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/map.js') }}">	</script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/spending.js') }}" ></script>
+<script src="{{ url_for('static', filename='js/perperson.js') }}" type="text/javascript">
+</script>
 </html>
