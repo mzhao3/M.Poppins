@@ -20,6 +20,12 @@ var f = [];
 var g = [];
 var h = [];
 var i = [];
+var allYears = [a,b,c,d,e,f,g,h,i]
+var allDis = Array.from(new Array(32), (x,i) => i + 1)
+var YearlyData = ['holder'];
+console.log(allDis)
+
+
 var allDis = [...Array(33).keys()];
 d3.csv("https://raw.githubusercontent.com/mzhao3/Poppins/master/data/hsfix.csv")
 .then(function(data) {
@@ -54,14 +60,34 @@ d3.csv("https://raw.githubusercontent.com/mzhao3/Poppins/master/data/hsfix.csv")
       i.push(data[thing])
     }
   }
+
+  for (dis in allDis){
+    //allDis = [1.....32]
+    console.log(allDis[dis])
+    var L = [];
+    for (year in allYears ){
+      d = {};
+      for (singleDis in year){
+        //console.log(singleDis)
+        if (singleDis['csd'] == String(dis)){
+          d['year'] = singleDis['year']
+          d['money'] = singleDis['grand_total_csd']
+        }
+      }
+      L.push(d)
+    }
+    YearlyData.push(L)
+  }
+  console.log(allData)
   console.log(a)
   console.log(a[0]) //WHY DOES THIS WORK???
   console.log(b)
+  console.log(YearlyData)
 
 });
 
-console.log(allData)
-console.log(allData[1]) //WHY DOES THIS RETURN UNDEFINED???
-console.log("this is all Data");
-console.log(a[0]); //WHY DOES THIS RETURN UNDEFINED???
-console.log("hi")
+//console.log(allData)
+//console.log(allData[1]) //WHY DOES THIS RETURN UNDEFINED???
+//console.log("this is all Data");
+//console.log(a[0]); //WHY DOES THIS RETURN UNDEFINED???
+//console.log("hi")
