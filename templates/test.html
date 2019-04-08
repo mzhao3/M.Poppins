@@ -6,8 +6,8 @@
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="https://d3js.org/d3.v5.min.js"></script>
-  <script src="{{ url_for('static', filename='test.js') }}"></script>
-  <link href="/static/fun.css" rel="stylesheet" >
+
+  <link href="/static/css/fun.css" rel="stylesheet" >
   <div class="row">
     <div class="col">
       <div class="container">
@@ -21,7 +21,7 @@
 <body>
 
   <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" href="http://127.0.0.1:5000"> <img src="{{url_for('static', filename='pop.png')}}" width = "50px" height = "50px">Team Poppins </a>
+    <a class="navbar-brand" href="http://127.0.0.1:5000"> <img src="{{url_for('static', filename='images/pop.png')}}" width = "50px" height = "50px">Team Poppins </a>
           <a name="too"/>
     <a href="#foo" class="btn btn-outline-info">Click here for other HS</a>
   </nav>
@@ -83,7 +83,7 @@
 
   <br><br><br><br><br><br><br><br><br><br><br> <br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br><br><br>
 <br><br><br>
-        <div id='addbutt'>
+        <div id='addhere'>
         </div>
 <hr>
 </body>
@@ -92,6 +92,6 @@
 <a href="#too" class="btn btn-info">See Updated Chart</a>
 </div>
 <br><br>
-
+<script src="{{ url_for('static', filename='test.js') }}"></script>
 
 </html>

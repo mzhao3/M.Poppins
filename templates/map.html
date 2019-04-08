@@ -23,20 +23,19 @@
 	<script src="http://d3js.org/d3.v4.min.js" charset="utf-8"></script>
   <script src="http://d3js.org/topojson.v1.min.js"></script>
 	<!-- src = https://raw.githubusercontent.com/dwillis/nyc-maps/master/school_districts.geojson -->
-	<script type = "text/javascript" src="{{ url_for('static', filename='districts.json') }}"></script>
+	<script type = "text/javascript" src="{{ url_for('static', filename='data/districts.json') }}"></script>
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+	<link href="/static/css/fun.css" rel="stylesheet" >
+
 </head>
 <body>
-	<!-- Page elements and content go here.
-  <svg width="960" height="720" style="float: left"></svg>
-    <div id='neighborhoods'> </div>
-		 -->
+	<a href="http://127.0.0.1:5000" class="btn btn-outline-info">Return to Home Page</a><br>
 		 <div id="what"><p>No district selected.</p></div>
 		 <div id = "select">
 		 <p> Choose what data you would like to display. </p>
 
 		 <select id = "spending">
-
+			 <option value = "support"> School Spending per Student </option>
 			 <option value = "classroom"> Instructional Spending </option>
 			 <option value = "support"> Instructional Support Services </option>
 			 <option value = "leadership"> Leadership Support Services </option>
@@ -58,5 +57,5 @@
 
 </div>
 </body>
-<script src="{{ url_for('static', filename='map.js') }}">	</script>
+<script src="{{ url_for('static', filename='js/map.js') }}">	</script>
 </html>
