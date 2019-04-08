@@ -2,7 +2,7 @@ body {
 background-color: #f7eff3
 }
 
-#side{
+#side, #topo{
   text-align: center;
 }
 
@@ -13,7 +13,6 @@ background-color: #f7eff3
 
 #pages{
   text-align: center;
-
 }
 
 .bg-light {
@@ -26,5 +25,10 @@ background-color: #f7eff3
 
 .jumbotron{
   background-color: #e5dee2
+
+}
+
+#sidekey{
+  text-align: left;
 
 }
