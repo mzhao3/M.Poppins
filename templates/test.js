@@ -1,7 +1,20 @@
 function getCsv(schoolname){
     
     d3.csv("https://raw.githubusercontent.com/mzhao3/Poppins/master/data/2015-2016_Demographic_Data_-_Grades_9-12_School.csv", function(csv){
-	//console.log(csv["School Name"]);
+
+	if (! document.getElementById(csv["School Name"])){
+	    var button = document.createElement("BUTTON");
+	
+	    button.innerHTML = csv["School Name"];
+	    button.id = csv["School Name"];
+	    button.addEventListener('click', function(e){
+		getCsv(this.id);
+		var title = document.getElementById("which_school");
+		title.innerHTML = this.id;
+	    });
+	    document.body.appendChild(button);
+	}
+	
 	if (csv["School Name"] == schoolname && csv["Category "] == "All Students"){
 	    //console.log(csv);
 	    console.log(csv["School Name"]);
