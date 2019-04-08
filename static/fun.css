@@ -14,3 +14,7 @@ background-color: #f7eff3
   text-align: center;
 
 }
+
+.bg-light {
+    background-color: #ffffff!important;
+}
